@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tb_postagens")
-public class Postagem {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
