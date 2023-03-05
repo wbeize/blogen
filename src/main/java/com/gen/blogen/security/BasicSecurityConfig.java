@@ -22,7 +22,7 @@ public class BasicSecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticantionManager(AuthenticationConfiguration authenticationConfiguration)
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
@@ -37,8 +37,8 @@ public class BasicSecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .antMatchers("/users/logar").permitAll()
-                        .antMatchers("/users/cadastrar").permitAll()
+                        .antMatchers("/users/login").permitAll()
+                        .antMatchers("/users/register").permitAll()
                         .antMatchers(HttpMethod.OPTIONS).permitAll()
                         .anyRequest().authenticated())
                 .httpBasic();

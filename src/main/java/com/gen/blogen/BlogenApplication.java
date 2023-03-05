@@ -1,4 +1,4 @@
-package com.spring.blogen;
+package com.gen.blogen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,6 @@
-package com.spring.blogen.model;
+package com.gen.blogen.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -6,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_temas")
+@Table(name = "tb_themes")
 public class Theme {
 
     @Id
@@ -15,9 +17,10 @@ public class Theme {
 
     @NotBlank(message = "Nomeie seu tema ;)")
     @Size(min = 5, max = 60, message = "Entre e 5 e 60 caracteres")
-    private String descricao;
+    private String description;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "theme", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("theme")
     private List<Post> post;
 
     public Long getId() {
@@ -28,11 +31,19 @@ public class Theme {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(List<Post> post) {
+        this.post = post;
     }
 }
