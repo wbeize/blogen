@@ -67,13 +67,5 @@ public class ThemeController {
 
         themeRepository.deleteById(id);
 
-//        return themeRepository.findById(id)
-//                .map(resp -> {
-//                    themeRepository.deleteById(id);
-//                    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-//                })
-//
-//                .orElse(ResponseEntity.notFound().build());
-
     }
 }
