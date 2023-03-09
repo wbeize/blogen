@@ -29,26 +29,24 @@ public class UserController {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<UserLogin> login(@RequestBody Optional<UserLogin> userLogin) {
         return userService.authenticateUser(userLogin).
                 map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     public ResponseEntity<User> Post(@RequestBody User user) {
-
         return userService.registerUser(user)
                 .map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
                 .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
     }
 
-    @GetMapping("/{update}")
+    @PutMapping("/{update}")
     public ResponseEntity<User> putUser(@Valid @PathVariable User user) {
         return userService.updateUser(user)
                 .map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
-
 }
